@@ -71,11 +71,11 @@ describe('AxiosApiClient', () => {
     const mockData = {
       statusCode: 201,
       data: {
-        message: 'Data created'
+        message: 'Data created',
       },
       message: 'Success',
       error: undefined,
-    }
+    };
     nock('http://localhost:3000').post('/api/data').reply(201, mockData);
 
     // Make a POST request using the AxiosApiClient instance
@@ -125,7 +125,9 @@ describe('AxiosApiClient', () => {
     };
 
     // Mock the GET request
-    nock('http://localhost:3000').get('/api/category').reply(200, categoryResponse);
+    nock('http://localhost:3000')
+      .get('/api/category')
+      .reply(200, categoryResponse);
 
     // Make a GET request using the AxiosApiClient instance
     const response = await apiClient.get<Category>({
@@ -141,13 +143,21 @@ describe('AxiosApiClient', () => {
   it('should make a GET request and return a Product', async () => {
     const productResponse: Result<Product> = {
       statusCode: 200,
-      data: { id: 1, name: 'Laptop', price: 1000, quantity: 1, category: { id: 1, name: 'Electronics' }},
+      data: {
+        id: 1,
+        name: 'Laptop',
+        price: 1000,
+        quantity: 1,
+        category: { id: 1, name: 'Electronics' },
+      },
       message: 'Success',
       error: undefined,
     };
 
     // Mock the GET request
-    nock('http://localhost:3000').get('/api/product').reply(200, productResponse);
+    nock('http://localhost:3000')
+      .get('/api/product')
+      .reply(200, productResponse);
 
     // Make a GET request using the AxiosApiClient instance
     const response = await apiClient.get<Product>({
@@ -156,7 +166,13 @@ describe('AxiosApiClient', () => {
 
     // Assert that the response is successful
     expect(response.statusCode).toBe(200);
-    expect(response.data).toEqual({ id: 1, name: 'Laptop', price: 1000, quantity: 1, category: { id: 1, name: 'Electronics' }});
+    expect(response.data).toEqual({
+      id: 1,
+      name: 'Laptop',
+      price: 1000,
+      quantity: 1,
+      category: { id: 1, name: 'Electronics' },
+    });
   });
 
   // Test with reponse complex nested data: Order
@@ -167,8 +183,20 @@ describe('AxiosApiClient', () => {
         id: 1,
         user: { id: 1, name: 'John Doe', email: '', age: 30 },
         products: [
-          { id: 1, name: 'Laptop', price: 1000, quantity: 1, category: { id: 1, name: 'Electronics' }},
-          { id: 2, name: 'Mouse', price: 20, quantity: 1, category: { id: 1, name: 'Electronics' }},
+          {
+            id: 1,
+            name: 'Laptop',
+            price: 1000,
+            quantity: 1,
+            category: { id: 1, name: 'Electronics' },
+          },
+          {
+            id: 2,
+            name: 'Mouse',
+            price: 20,
+            quantity: 1,
+            category: { id: 1, name: 'Electronics' },
+          },
         ],
       },
       message: 'Success',
@@ -191,8 +219,20 @@ describe('AxiosApiClient', () => {
       id: 1,
       user: { id: 1, name: 'John Doe', email: '', age: 30 },
       products: [
-        { id: 1, name: 'Laptop', price: 1000, quantity: 1, category: { id: 1, name: 'Electronics' }},
-        { id: 2, name: 'Mouse', price: 20, quantity: 1, category: { id: 1, name: 'Electronics' }},
+        {
+          id: 1,
+          name: 'Laptop',
+          price: 1000,
+          quantity: 1,
+          category: { id: 1, name: 'Electronics' },
+        },
+        {
+          id: 2,
+          name: 'Mouse',
+          price: 20,
+          quantity: 1,
+          category: { id: 1, name: 'Electronics' },
+        },
       ],
     });
   });
