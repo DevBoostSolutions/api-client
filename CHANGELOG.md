@@ -32,3 +32,8 @@
 
 - **Changed:**
   - Rebuild and export new version
+
+### 1.0.6 - 2024-07-07
+
+- **Changed:**
+  - Update errorHandle to any type

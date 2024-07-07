@@ -20,11 +20,11 @@ export class AxiosInterceptor
   >
   implements IInterceptor
 {
-  private errorHandler: (error: AxiosError) => any;
+  private errorHandler: (error: any) => any;
 
   constructor(
     instance: AxiosInstance,
-    errorHandler: (error: AxiosError) => any,
+    errorHandler: (error: any) => any,
     environment: string,
   ) {
     super(instance, environment);
