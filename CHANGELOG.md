@@ -15,3 +15,9 @@
 
 - **Changed:**
   - Update build lib
+
+### 1.0.3 - 2024-07-07
+
+- **Changed:**
+  - Update build lib
+  - Remove dev dependencies
