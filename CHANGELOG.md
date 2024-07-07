@@ -10,4 +10,8 @@
 
 - **Changed:**
   - Update index path
-  - Added documentation (`README.md`)
+
+### 1.0.2 - 2024-07-07
+
+- **Changed:**
+  - Update build lib
