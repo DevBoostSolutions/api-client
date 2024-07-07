@@ -1,6 +1,6 @@
 {
   "name": "@devboostsolution/api-client",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "This is an axios extension that makes it easier for developers to call the API through the application",
   "author": "LongVQ",
   "repository": {

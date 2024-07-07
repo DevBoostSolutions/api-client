@@ -21,3 +21,9 @@
 - **Changed:**
   - Update build lib
   - Remove dev dependencies
+
+### 1.0.3 - 2024-07-07
+
+- **Changed:**
+  - Remove generic type from Axios interceptor
+  - Also export axios to descrease package dependency
