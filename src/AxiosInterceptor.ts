@@ -12,7 +12,7 @@ import { BaseInterceptor } from './BaseInterceptor';
  * @extends BaseInterceptor
  * @implements IInterceptor
  */
-export class AxiosInterceptor<T>
+export class AxiosInterceptor
   extends BaseInterceptor<
     AxiosInstance,
     InternalAxiosRequestConfig,
@@ -20,11 +20,11 @@ export class AxiosInterceptor<T>
   >
   implements IInterceptor
 {
-  private errorHandler: (error: AxiosError<T>) => any;
+  private errorHandler: (error: AxiosError) => any;
 
   constructor(
     instance: AxiosInstance,
-    errorHandler: (error: AxiosError<T>) => any,
+    errorHandler: (error: AxiosError) => any,
     environment: string,
   ) {
     super(instance, environment);
@@ -48,7 +48,7 @@ export class AxiosInterceptor<T>
    * @param response The response.
    * @returns The modified response.
    */
-  public onResponse(response: AxiosResponse): AxiosResponse<T> {
+  public onResponse(response: AxiosResponse): AxiosResponse {
     return response;
   }
 
@@ -57,7 +57,7 @@ export class AxiosInterceptor<T>
    * @param error The error object.
    * @returns The error promise rejection.
    */
-  public onRequestError(error: AxiosError<T>): any {
+  public onRequestError(error: AxiosError): any {
     this.logging('error', error);
     return Promise.reject(error);
   }

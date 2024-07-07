@@ -3,6 +3,7 @@ import { AxiosInterceptor } from './AxiosInterceptor';
 import { AxiosRequestConfig } from 'axios';
 import { IApiClient, IInterceptor } from './type';
 import { BaseInterceptor } from './BaseInterceptor';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 export {
   AxiosApiClient,
@@ -11,4 +12,7 @@ export {
   IApiClient,
   IInterceptor,
   BaseInterceptor,
+  axios,
+  AxiosError,
+  AxiosResponse
 };

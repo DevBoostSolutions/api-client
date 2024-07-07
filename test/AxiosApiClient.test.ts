@@ -6,9 +6,9 @@ import { describe, it, expect, beforeAll } from '@jest/globals';
 import nock from 'nock';
 
 describe('AxiosApiClient', () => {
-  let apiClient: AxiosApiClient<Result>;
+  let apiClient: AxiosApiClient;
   let axiosInstance: AxiosInstance;
-  let axiosInterceptor: AxiosInterceptor<Result>;
+  let axiosInterceptor: AxiosInterceptor;
 
   beforeAll(() => {
     // Initialize the AxiosApiClient instance
@@ -39,7 +39,7 @@ describe('AxiosApiClient', () => {
       'development',
     );
 
-    apiClient = new AxiosApiClient<Result>(axiosInterceptor);
+    apiClient = new AxiosApiClient(axiosInterceptor);
   });
 
   afterEach(() => {
@@ -130,7 +130,7 @@ describe('AxiosApiClient', () => {
       .reply(200, categoryResponse);
 
     // Make a GET request using the AxiosApiClient instance
-    const response = await apiClient.get<Category>({
+    const response = await apiClient.get<Result<Category>>({
       url: '/api/category',
     });
 
@@ -160,7 +160,7 @@ describe('AxiosApiClient', () => {
       .reply(200, productResponse);
 
     // Make a GET request using the AxiosApiClient instance
-    const response = await apiClient.get<Product>({
+    const response: Result<Product> = await apiClient.get<Result<Product>>({
       url: '/api/product',
     });
 
@@ -207,7 +207,7 @@ describe('AxiosApiClient', () => {
     nock('http://localhost:3000').get('/api/order').reply(200, orderResponse);
 
     // Make a GET request using the AxiosApiClient instance
-    const response = await apiClient.get<Order>({
+    const response = await apiClient.get<Result<Order>>({
       url: '/api/order',
     });
 

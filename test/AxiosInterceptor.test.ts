@@ -10,7 +10,7 @@ import { Result, UserToken } from './type';
 
 describe('AxiosInterceptor', () => {
   let axiosInstance: AxiosInstance;
-  let axiosInterceptor: AxiosInterceptor<Result>;
+  let axiosInterceptor: AxiosInterceptor;
 
   const userToken: UserToken = {
     accessToken: 'access-token',
@@ -32,13 +32,13 @@ describe('AxiosInterceptor', () => {
       },
     });
 
-    const errorHandler = (error: AxiosError<Result>) => {
+    const errorHandler = (error: AxiosError) => {
       if (error.response) {
         console.log(`ErrorHandler is called`);
       }
     };
 
-    axiosInterceptor = new AxiosInterceptor<Result>(
+    axiosInterceptor = new AxiosInterceptor(
       axiosInstance,
       errorHandler,
       'development',
@@ -68,7 +68,7 @@ describe('AxiosInterceptor', () => {
   it('should intercept requests and modify the config', async () => {
     const onRequestSpy = jest.spyOn(axiosInterceptor as any, 'onRequest');
 
-    const testConfig: InternalAxiosRequestConfig<Result> = {
+    const testConfig: InternalAxiosRequestConfig = {
       url: '/test',
       method: 'get',
       headers,

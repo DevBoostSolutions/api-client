@@ -12,14 +12,14 @@ import { AxiosInterceptor } from './AxiosInterceptor';
  * @template T - The template of the response data.
  * @implements IApiClient
  */
-export class AxiosApiClient<T> implements IApiClient {
+export class AxiosApiClient implements IApiClient {
   private axiosInstance: AxiosInstance;
 
   /**
    * Creates an instance of the AxiosApiClient.
    * @param interceptor - The interceptor to use for the requests.
    */
-  constructor(interceptor: AxiosInterceptor<T>) {
+  constructor(interceptor: AxiosInterceptor) {
     this.axiosInstance = interceptor.getInstance();
   }
 
@@ -29,7 +29,7 @@ export class AxiosApiClient<T> implements IApiClient {
    * @param url - The URL to send the request to.
    * @returns A Promise that resolves to the response data.
    */
-  public async get<R = any>(config: AxiosRequestConfig): Promise<T & R> {
+  public async get<T = any>(config: AxiosRequestConfig): Promise<T> {
     return this.request({ ...config, method: 'GET' });
   }
 
@@ -40,7 +40,7 @@ export class AxiosApiClient<T> implements IApiClient {
    * @param data - The data to send with the request.
    * @returns A Promise that resolves to the response data.
    */
-  public async post<R = any>(config: AxiosRequestConfig): Promise<T & R> {
+  public async post<T = any>(config: AxiosRequestConfig): Promise<T> {
     return this.request({ ...config, method: 'POST' });
   }
 
@@ -51,7 +51,7 @@ export class AxiosApiClient<T> implements IApiClient {
    * @param data - The data to send with the request.
    * @returns A Promise that resolves to the response data.
    */
-  public async put<R = any>(config: AxiosRequestConfig): Promise<T & R> {
+  public async put<T = any>(config: AxiosRequestConfig): Promise<T> {
     return this.request({ ...config, method: 'PUT' });
   }
 
@@ -61,7 +61,7 @@ export class AxiosApiClient<T> implements IApiClient {
    * @param url - The URL to send the request to.
    * @returns A Promise that resolves to the response data.
    */
-  public async delete<R = any>(config: AxiosRequestConfig): Promise<T & R> {
+  public async delete<T = any>(config: AxiosRequestConfig): Promise<T> {
     return this.request({ ...config, method: 'DELETE' });
   }
 
@@ -72,7 +72,7 @@ export class AxiosApiClient<T> implements IApiClient {
    * @param data - The data to send with the request.
    * @returns A Promise that resolves to the response data.
    */
-  public async patch<R = any>(config: AxiosRequestConfig): Promise<T & R> {
+  public async patch<T = any>(config: AxiosRequestConfig): Promise<T> {
     return this.request({ ...config, method: 'PATCH' });
   }
 
@@ -82,11 +82,11 @@ export class AxiosApiClient<T> implements IApiClient {
    * @param config - The configuration for the request.
    * @returns A Promise that resolves to the response data.
    */
-  public async request<R = any>(config: AxiosRequestConfig): Promise<T & R> {
+  public async request<T = any>(config: AxiosRequestConfig): Promise<T> {
     return new Promise((resolve, reject) => {
       this.axiosInstance
-        .request<any, AxiosResponse<T & R>>(config)
-        .then((res: AxiosResponse<T & R>) => {
+        .request<any, AxiosResponse<T>>(config)
+        .then((res: AxiosResponse<T>) => {
           if (res && res.data) {
             resolve(res.data);
           } else {
